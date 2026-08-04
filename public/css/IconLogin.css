@@ -1,0 +1,55 @@
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.user-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:white;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    background:white;
+    color:black;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.name{
+    font-weight:bold;
+}
+
+.role{
+    font-size:12px;
+    color:#d1d5db;
+}
+
+.logout-btn{
+    background:#dc2626;
+    padding:8px 12px;
+}
+
+.logout-btn:hover{
+    background:#b91c1c;
+}
+
+.login-link{
+    color: green;
+    text-decoration: none;
+}

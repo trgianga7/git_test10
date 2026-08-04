@@ -1,0 +1,44 @@
+.permission-box{
+    max-width:750px;
+    max-height:350px;
+    overflow:auto;
+
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:15px;
+
+    background:white;
+}
+
+.permission-group{
+    margin-bottom:20px;
+}
+
+.permission-title{
+    color:#dc3545;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.permission-list{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:10px 20px;
+}
+
+.permission-item{
+    display:flex !important;
+    align-items:center;
+    gap:8px;
+    font-weight:normal;
+    margin-bottom:8px;
+}
+
+.permission-item input{
+    width:auto !important;
+    margin:0;
+}
+
+.permission-item span{
+    display:inline;
+}

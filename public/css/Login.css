@@ -1,0 +1,91 @@
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    background:#f3f4f6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.auth-wrapper{
+    width:100%;
+    max-width:400px;
+    background:#fff;
+
+    padding:35px;
+    border-radius:16px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+    display:flex;
+    flex-direction:column;
+}
+
+.auth-wrapper h2{
+    text-align:center;
+    margin:0 0 25px;
+    font-weight:600;
+}
+
+.auth-wrapper label{
+    font-size:14px;
+    font-weight:500;
+    margin-bottom:6px;
+}
+
+.auth-wrapper input{
+    padding:10px 12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+
+    margin-bottom:18px;
+
+    font-size:14px;
+    transition:.2s;
+}
+
+.auth-wrapper input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+.auth-wrapper button{
+    margin-top:5px;
+
+    padding:12px;
+    border:none;
+    border-radius:8px;
+
+    background:#2563eb;
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.auth-wrapper button:hover{
+    background:#1d4ed8;
+}
+
+.auth-link{
+    margin-top:16px;
+
+    text-align:center;
+    text-decoration:none;
+
+    color:#2563eb;
+    font-size:14px;
+}
+
+.auth-link:hover{
+    text-decoration:underline;
+}
+
+.error{
+    border-color:#dc2626 !important;
+}

@@ -1,0 +1,286 @@
+.review{
+
+    padding:20px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.review:last-child{
+
+    border:none;
+
+}
+
+.review-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+}
+
+.review-name{
+
+    font-weight:bold;
+
+}
+
+.review-stars{
+
+    color:#f5b301;
+
+}
+
+.review-content{
+
+    margin:10px 0;
+
+    line-height:1.6;
+
+}
+
+.review-images{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:10px;
+
+}
+
+.review-images img{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+#review-list {
+    margin-top: 20px;
+}
+
+.item-danh-gia {
+    padding: 20px;
+    margin-bottom: 20px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    background: #fff;
+
+    transition: .2s;
+}
+
+.item-danh-gia:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,.06);
+}
+
+.item-danh-gia:last-child {
+    margin-bottom: 0;
+}
+
+.ten-khach-hang{
+    font-size:16px;
+    font-weight:600;
+    color:blue;
+    margin-bottom:6px;
+}
+
+.ten-phu{
+    color:orange;
+    font-size:14px;
+    margin-top:4px;
+    margin-bottom:10px;
+}
+
+.dinh-kem-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+
+    margin:12px 0;
+}
+
+.dinh-kem-list img{
+    width:90px;
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+    border:1px solid #ddd;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.dinh-kem-list img:hover{
+    transform:scale(1.05);
+}
+
+/*sao đánh giá */
+.stars{
+    margin-bottom:10px;
+}
+
+.star.full{
+    color:#f59e0b;
+}
+
+.star.empty{
+    color:#d1d5db;
+}
+
+.star.half{
+    position:relative;
+    color:#d1d5db;
+}
+
+.star.half::before{
+    content:'★';
+    position:absolute;
+    left:0;
+    width:50%;
+    overflow:hidden;
+    color:#f59e0b;
+}
+
+.rating-number{
+    margin-left:8px;
+    color:#666;
+    font-size:14px;
+}
+
+
+/*nội dung */
+.item-danh-gia p{
+    margin:12px 0;
+    line-height:1.7;
+    color:#444;
+}
+
+.item-danh-gia small{
+    display:block;
+
+    margin-top:10px;
+
+    color:#888;
+    font-size:13px;
+}
+
+/*Tổng đánh giá */
+.review-summary{
+
+    display:flex;
+
+    gap:40px;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:24px;
+
+    margin-bottom:24px;
+
+}
+
+.summary-left{
+
+    width:180px;
+
+    text-align:center;
+
+}
+
+.summary-score{
+
+    font-size:52px;
+
+    font-weight:700;
+
+    color:#f59e0b;
+
+}
+
+.summary-count{
+
+    margin-top:10px;
+
+    color:#666;
+
+}
+
+.summary-right{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.summary-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.summary-item span:first-child{
+
+    width:35px;
+
+}
+
+.summary-item span:last-child{
+
+    width:45px;
+
+    text-align:right;
+
+}
+
+.summary-bar{
+
+    flex:1;
+
+    height:8px;
+
+    background:#e5e7eb;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.summary-fill{
+
+    height:100%;
+
+    background:#f59e0b;
+
+}

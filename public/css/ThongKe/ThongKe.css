@@ -1,0 +1,123 @@
+/* tắt chart khác */
+.chart-section {
+    display: none;
+}
+
+/* */
+h2 {
+    margin-bottom: 25px;
+    color: #1f2937;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    transition: transform .2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-card h4 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.stat-card h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+.bg-success {
+    background: #16a34a;
+}
+
+.bg-primary {
+    background: #2563eb;
+}
+
+.bg-warning {
+    background: #f59e0b;
+}
+
+.bg-danger {
+    background: #dc2626;
+}
+
+.bg-secondary {
+    background: #6b7280;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.button-group button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: opacity .2s;
+}
+
+.button-group button:hover {
+    opacity: .9;
+}
+
+.chart-section {
+    display: none;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.chart-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #374151;
+}
+
+.chart-section canvas {
+    max-height: 450px;
+}
+
+@media (max-width: 768px) {
+
+    .stat-card h2 {
+        font-size: 22px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+}
+
+/* nháy nút đang chọn */
+.active-chart {
+    box-shadow: 0 0 0 3px rgba(255,255,255,.4) inset;
+}
+

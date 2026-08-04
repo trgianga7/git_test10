@@ -1,0 +1,57 @@
+.product-gallery{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+#mainImage{
+
+    width:400px;
+
+    height:320px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+.thumbs{
+
+    margin-top:15px;
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.thumb{
+
+    width:70px;
+
+    height:70px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    border:2px solid transparent;
+
+    transition:.2s;
+
+}
+
+.thumb:hover{
+
+    border-color:#2196f3;
+
+    transform:scale(1.05);
+
+}

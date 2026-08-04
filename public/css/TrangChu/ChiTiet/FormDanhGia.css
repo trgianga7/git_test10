@@ -1,0 +1,284 @@
+.form-danh-gia{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:24px;
+}
+
+.product-select{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+
+    max-height:280px;
+    overflow-y:auto;
+
+    padding-right:6px;
+}
+
+.product-card{
+
+    cursor:pointer;
+
+}
+
+.product-card input{
+
+    display:none;
+
+}
+
+.product-card-body{
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:14px 18px;
+
+    transition:.2s;
+
+}
+
+.product-card input:checked + .product-card-body{
+
+    border-color:#198754;
+
+    background:#eef9f1;
+
+}
+
+.product-card-body:hover{
+
+    border-color:#198754;
+
+    box-shadow:0 2px 8px rgba(25,135,84,.15);
+
+}
+
+.product-card input:checked + .product-card-body{
+
+    border-color:#198754;
+
+    background:#eef9f1;
+
+    box-shadow:0 0 0 3px rgba(25,135,84,.15);
+
+}
+
+/*sao đánh giá */
+
+.rating-stars{
+
+    display:flex;
+    gap:6px;
+
+}
+
+.rating-stars .star{
+
+    position:relative;
+
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+
+    width:42px;
+    height:42px;
+
+    font-size:42px;
+    line-height:1;
+
+    color:#ddd;
+
+    cursor:pointer;
+    user-select:none;
+
+}
+
+.rating-stars .star.active{
+
+    color:#ffc107;
+
+}
+
+.rating-stars .star.half-active{
+
+    background:linear-gradient(
+        to right,
+        #ffc107 50%,
+        #ddd 50%
+    );
+
+    -webkit-background-clip:text;
+    background-clip: text;
+    -webkit-text-fill-color:transparent;
+
+}
+
+.rating-stars .half{
+
+    position:absolute;
+
+    top:0;
+
+    width:50%;
+    height:100%;
+
+    z-index:2;
+
+}
+
+.rating-stars .left{
+
+    left:0;
+
+}
+
+.rating-stars .right{
+
+    right:0;
+
+}
+
+.rating-text{
+
+    margin-top:10px;
+
+    font-size:15px;
+
+    color:#198754;
+
+    font-weight:600;
+
+}
+
+/*nội dung */
+.form-danh-gia textarea{
+
+    width:100%;
+    min-height:140px;
+
+    margin-top:18px;
+
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    padding:14px 16px;
+
+    resize:vertical;
+
+    font-size:15px;
+    line-height:1.6;
+
+    transition:.2s;
+
+}
+
+.form-danh-gia textarea:focus{
+
+    outline:none;
+
+    border-color:#198754;
+
+    box-shadow:0 0 0 3px rgba(25,135,84,.15);
+
+}
+
+.text-counter{
+
+    text-align:right;
+
+    margin-top:6px;
+
+    color:#888;
+
+    font-size:13px;
+
+}
+
+/*up load ảnh */
+.upload-btn{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    border:1px dashed #198754;
+
+    color:#198754;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.upload-btn:hover{
+
+    background:#eef9f1;
+
+}
+
+/*preview ảnh */
+#previewImages{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:15px;
+
+}
+
+#previewImages img{
+
+    width:90px;
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    border:1px solid #ddd;
+
+}
+
+/*nút gửi */
+.form-danh-gia button{
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#198754;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.form-danh-gia button:hover{
+
+    background:#157347;
+
+}

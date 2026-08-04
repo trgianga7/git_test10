@@ -1,0 +1,256 @@
+#product-detail{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:40px;
+
+    width:100%;
+
+}
+
+.product-name{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    line-height:1.35;
+
+    color:#222;
+
+    margin-bottom:12px;
+
+}
+
+.product-type{
+
+    margin-top:6px;
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+.product-price{
+
+    font-size:24px;
+
+    color: skyblue;
+
+    font-weight:bold;
+
+    padding:15px 0;
+
+}
+
+.product-price strong{
+
+    color: red;
+
+}
+
+.price-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.price-label{
+    font-size:18px;
+    font-weight:600;
+    color:#333;
+}
+
+.price-old{
+    font-size:18px;
+    color:#999;
+    text-decoration:line-through;
+}
+
+.price-sale{
+    font-size:32px;
+    font-weight:700;
+    color:#e53935;
+}
+
+.price-normal{
+    font-size:32px;
+    font-weight:700;
+    color:#e53935;
+}
+
+.price-badge{
+    padding:4px 10px;
+
+    background:#e53935;
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+
+    border-radius:6px;
+}
+
+.product-stock{
+
+    margin-bottom:15px;
+
+}
+
+.product-action{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-top:10px;
+
+    flex-wrap:wrap;
+
+}
+
+/*Chọn số lượng */
+.quantity-box{
+
+    display:flex;
+
+    align-items:center;
+
+    width:150px;
+
+    height:46px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+    background:#fff;
+
+}
+
+.quantity-box button{
+
+    width:46px;
+
+    height:100%;
+
+    border:none;
+
+    background:#f8f9fa;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.quantity-box button:hover{
+
+    background:#e9ecef;
+
+}
+
+.quantity-box input{
+
+    flex:1;
+
+    border:none;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    outline:none;
+
+}
+
+.quantity-box input::-webkit-inner-spin-button,
+.quantity-box input::-webkit-outer-spin-button{
+
+    -webkit-appearance:none;
+
+    margin:0;
+
+}
+
+/*Nút thêm giỏ */
+.btn-cart-detail{
+
+    height:48px;
+
+    padding:0 28px;
+
+    border:2px solid #198754;
+
+    border-radius:8px;
+
+    background:#fff;
+
+    color:#198754;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.btn-cart-detail:hover{
+
+    background:#198754;
+
+    color:#fff;
+
+}
+
+/*Nút mua */
+.btn-buy{
+
+    height:48px;
+
+    padding:0 36px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#dc3545;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    box-shadow:0 6px 16px rgba(220,53,69,.25);
+
+}
+
+.btn-buy:hover{
+
+    background:#c82333;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 24px rgba(220,53,69,.35);
+
+}

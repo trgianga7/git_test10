@@ -1,0 +1,25 @@
+.sidebar .select2-container {
+    width: 100% !important;
+}
+
+/*box */
+.sidebar .select2-container--default .select2-selection--single {
+    height: 40px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+}
+
+/*text fix bị lệch */
+.sidebar .select2-container--default .select2-selection--single .select2-selection__rendered {
+    height: 40px !important;
+    line-height: 40px !important;
+    padding-left: 12px !important;
+    color: #111827 !important;
+}
+
+/*arrow */
+.sidebar .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px !important;
+    top: 0 !important;
+    right: 8px !important;
+}

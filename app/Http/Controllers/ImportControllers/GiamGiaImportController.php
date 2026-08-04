@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers\ImportControllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Excel\Imports\GiamGiaImport;
+use Maatwebsite\Excel\Facades\Excel;
+
+class GiamGiaImportController extends Controller
+{
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx,xls,csv'
+        ]);
+
+        Excel::import(new GiamGiaImport, $request->file('file'));
+
+        return back()->with('success', 'Import thành công');
+    }
+    
+}

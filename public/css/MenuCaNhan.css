@@ -1,0 +1,49 @@
+/* MenuCaNhan.css */
+
+.menu-ca-nhan {
+    max-width: 500px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-item,
+.menu-back {
+    display: block;
+    padding: 15px 20px;
+    background: #fff;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    border: 3px solid #e5e7eb;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.menu-item:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.menu-back {
+    text-align: center;
+    background: #f3f4f6;
+}
+
+.menu-back:hover {
+    background: #d1d5db;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+}
+
+.menu-item {
+    text-align: center;
+    font-size: 16px;
+}
