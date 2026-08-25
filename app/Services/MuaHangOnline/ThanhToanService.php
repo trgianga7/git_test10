@@ -8,6 +8,7 @@ use App\Models\KhachHangModel;
 use App\Models\GiamGiaModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Support\Cache\SanPhamCache;
 
 class ThanhToanService 
 {
@@ -44,9 +45,7 @@ class ThanhToanService
                 ->map(function ($item) {
 
                     return [
-
                         'id' => $item->id,
-
                         'ket_hop_dia_chi' => $item->ket_hop_dia_chi
                     ];
                 })
@@ -54,17 +53,11 @@ class ThanhToanService
         }
 
         return [
-
             'ten_nguoi_nhan' => $customer->ten_khach_hang ?? '',
-
             'sdt' => $customer->sdt ?? '',
-
             'so_du' => $customer->vi ?? 0,
-
             'dia_chi' => $diaChi,
-
             'gio_hang' => array_values($cart),
-
             'tong_tien' => $tongTien
         ];
     }
@@ -146,10 +139,10 @@ class ThanhToanService
 
                 if ($giamGia->loai_giam_gia == 0) {
                     $soTienGiam = $giamGia->gia_tri;
-                    $loaiGiamGiaHd = 0;
+                    $loaiGiamGiaHd = 'đ';
                 } else {
                     $soTienGiam = ($tongTienGoc * $giamGia->gia_tri) / 100;
-                    $loaiGiamGiaHd = 1;
+                    $loaiGiamGiaHd = '%';
                 }
 
                 $soTienGiam = min($soTienGiam, $tongTienGoc);
@@ -181,12 +174,15 @@ class ThanhToanService
                 $khachHang->decrement('vi', $tongTienThuc);
             }
 
+            SanPhamCache::forgetProduct($sp->id_san_pham);
+
             $hoaDon = HoaDonModel::create([
-                'id_khach_hang' => auth('customer')->id() ?? 0,
+                'id_khach_hang' => auth('customer')->id() ?? NULL,
                 'dia_chi_hd' => $diaChi,
                 'ten_nguoi_nhan' => $request->ten_nguoi_nhan,
                 'sdt_nguoi_nhan' => $request->sdt_nguoi_nhan,
                 'tong_tien_goc' => $tongTienGoc,
+                'ten_giam_gia' => $giamGia?->ten_giam_gia,
                 'giam_gia' => $giaTriGiam,
                 'loai_giam_gia_hd' => $loaiGiamGiaHd,
                 'tong_tien_thuc' => $tongTienThuc,

@@ -58,15 +58,16 @@ class NguoiDungService
         return $nguoiDung->delete();
     }
 
-    public function mokhoa($id)
+    public function mokhoa($uuid)
     {
-        $nguoiDung = NguoiDungModel::findOrFail($id);
+        $nguoiDung = NguoiDungModel::where('uuid', $uuid)
+            ->firstOrFail();
 
         $nguoiDung->update([
             'so_lan_sai' => 0,
             'thoi_gian_khoa' => null
         ]);
 
-        return $nguoiDung; 
+        return $nguoiDung;
     }
 }

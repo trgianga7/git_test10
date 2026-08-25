@@ -6,6 +6,7 @@ use App\Models\GiamGiaModel;
 use App\Models\SanPhamChiTietModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Support\Cache\SanPhamCache;
 
 class GiamGiaService
 {
@@ -99,12 +100,16 @@ class GiamGiaService
             ]);
         }
     
+        SanPhamCache::forgetProduct($spct->id_san_pham);
+        
         $spct->update(['gia_khuyen_mai' => $data['gia_khuyen_mai']]);
     }
 
     public function huyKhuyenMai($id)
     {
         $spct = SanPhamChiTietModel::findOrFail($id);
+
+        SanPhamCache::forgetProduct($spct->id_san_pham);
 
         $spct->update([
             'gia_khuyen_mai' => null

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('dia_chi', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_khach_hang')->index();
+            $table->foreignId('id_khach_hang')->constrained('khach_hang')->cascadeOnDelete();
             $table->integer('tinh');
             $table->integer('huyen');
             $table->string('phuong');

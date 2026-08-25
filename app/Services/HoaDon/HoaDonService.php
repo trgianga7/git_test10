@@ -10,6 +10,7 @@ use App\Models\TrangThaiHoaDonModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Support\Cache\SanPhamCache;
 
 class HoaDonService
 {
@@ -18,6 +19,7 @@ class HoaDonService
         $query = HoaDonModel::with([
             'khachhang',
             'chiTiets',
+            //'chiTiets.sanPhamChiTiet.sanPham',
             'trangthaihd'
         ]);
 
@@ -114,6 +116,8 @@ class HoaDonService
 
             $giamGia = $data['giam_gia'] ?? 0;
             $tongTienThuc = max($tongTienGoc - $giamGia, 0);
+
+            SanPhamCache::forgetProduct($sp->id_san_pham);
 
             $hoaDon = HoaDonModel::create([
                 'id_khach_hang' => $data['id_khach_hang'],

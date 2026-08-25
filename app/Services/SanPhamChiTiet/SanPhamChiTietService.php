@@ -53,7 +53,7 @@ class SanPhamChiTietService
 
             unset($data['anh_dai_dien'], $data['anh']);
 
-            $data['gia_khuyen_mai'] = $data['gia_ban'];
+            $data['gia_khuyen_mai'] = null;
             $data['trang_thai'] = 1;
             $data['ngay_tao'] = now();
 
@@ -62,11 +62,7 @@ class SanPhamChiTietService
             if ($avatar) {
                 $fileName = 'AnhSP'.$sanPhamCt->id.'_'.Str::random(5).'.'.$avatar->extension();
 
-                $path = $avatar->storeAs(
-                    'anh_san_pham',
-                    $fileName,
-                    'public'
-                );
+                $path = $avatar->storeAs('anh_san_pham', $fileName, 'public');
 
                 $sanPhamCt->update([
                     'anh_dai_dien' => $path
@@ -76,11 +72,7 @@ class SanPhamChiTietService
             foreach ($images as $file) {
                 $fileName = 'AnhSP'.$sanPhamCt->ma_sp.'_'.Str::random(5).'.'.$file->extension();
 
-                $path = $file->storeAs(
-                    'anh_san_pham',
-                    $fileName,
-                    'public'
-                );
+                $path = $file->storeAs('anh_san_pham', $fileName, 'public');
 
                 HinhAnhModel::create([
                     'id_san_pham_chi_tiet' => $sanPhamCt->id,
@@ -109,7 +101,7 @@ class SanPhamChiTietService
             //$sanPhamCt = SanPhamChiTietModel::where('ma_sp', $ma_sp)->firstOrFail();
 
             //$data['ma_sp'] = (string) Str::uuid();
-            $data['gia_khuyen_mai'] = $data['gia_ban'];
+            //$data['gia_khuyen_mai'] = $data['gia_ban'];
             $sanPhamCt->update($data);
 
             if ($avatar) {
@@ -127,11 +119,7 @@ class SanPhamChiTietService
                     Str::random(5) . '.' .
                     $avatar->extension();
 
-                $path = $avatar->storeAs(
-                    'anh_san_pham',
-                    $fileName,
-                    'public'
-                );
+                $path = $avatar->storeAs('anh_san_pham', $fileName, 'public');
 
                 $sanPhamCt->update([
                     'anh_dai_dien' => $path
@@ -157,11 +145,7 @@ class SanPhamChiTietService
                         Str::random(5) . '.' .
                         $file->extension();
 
-                    $path = $file->storeAs(
-                        'anh_san_pham',
-                        $fileName,
-                        'public'
-                    );
+                    $path = $file->storeAs('anh_san_pham', $fileName, 'public');
 
                     HinhAnhModel::create([
                         'id_san_pham_chi_tiet' => $sanPhamCt->id,

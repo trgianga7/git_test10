@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use App\Services\DanhMuc\DanhMucService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\DanhMuc\DanhMucSelectResource;
 
 class DanhMucApiController extends Controller
 {
@@ -31,8 +32,13 @@ class DanhMucApiController extends Controller
 
     public function getAll(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->danhMucService->getListAll()
+        );*/
+        $danhMucHoatDong = $this->danhMucService->getListAll();
+
+        return response()->json(
+            DanhMucSelectResource::collection($danhMucHoatDong)
         );
     }
 

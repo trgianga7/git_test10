@@ -29,24 +29,27 @@
 </div>
 
 <span class="ghi-chu-hoa-don">Ấn vào mã hóa đơn để xem chi tiết*</span>
-<table>
-    <thead>
-        <tr>
-            <th>STT</th>
-            <th>Mã hóa đơn</th>
-            <th>Tên khách hàng</th>
-            <th>Tên người nhận</th>
-            <th>Tổng tiền</th>
-            <th>Loại hình</th>
-            <th>Trạng thái thanh toán</th>
-            <th>Ngày tạo</th>
-            <th>Trạng thái</th>
-            <th>Chức năng</th> 
-        </tr>
-    </thead>
 
-    <tbody id="tbody"></tbody>
-</table>
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã hóa đơn</th>
+                <th>Tên khách hàng</th>
+                <th>Tên người nhận</th>
+                <th>Tổng tiền</th>
+                <th>Loại hình</th>
+                <th>Trạng thái thanh toán</th>
+                <th>Ngày tạo</th>
+                <th>Trạng thái</th>
+                <th>Chức năng</th> 
+            </tr>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+    </table>
+</div>
 
 <div id="tong-ban-ghi" class="tong-ban-ghi"></div>
 <div id="pagination"></div>
@@ -88,7 +91,7 @@ $(document).ready(function () {
                     <td>${Number(hd.tong_tien_thuc).toLocaleString()}</td>
                     <td>${loaiHinh[hd.loai_hinh] ?? 'Không xác định'}</td>
                     <td>${hd.trang_thai_thanh_toan ? 'Đã thanh toán' : 'Chưa thanh toán'}</td>
-                    <td>${hd.ngay_tao}</td>
+                    <td>${formatDate(hd.ngay_tao)}</td>
                     <td>${getTrangThaiBadge(hd.trangthaihd?.trang_thai)}</td>
                     <td>
                         <div class="action-group">
@@ -210,6 +213,21 @@ $(document).ready(function () {
                 ${trangThai}
             </span>
         `;
+    }
+
+    function formatDate(dateString) {
+
+        let d = new Date(dateString);
+
+        let ngay = String(d.getDate()).padStart(2, '0');
+        let thang = String(d.getMonth() + 1).padStart(2, '0');
+        let nam = d.getFullYear();
+
+        let gio = String(d.getHours()).padStart(2, '0');
+        let phut = String(d.getMinutes()).padStart(2, '0');
+        let giay = String(d.getSeconds()).padStart(2, '0');
+
+        return `${ngay}/${thang}/${nam} ${gio}:${phut}:${giay}`;
     }
 
     let timer;

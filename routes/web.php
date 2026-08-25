@@ -165,68 +165,64 @@ Route::post('/kiem-tra-giam-gia', [ThanhToanController::class, 'kiemTraMa'])
 Route::middleware(['auth:admin', 'kiem_tra_quyen', 'kiem_tra_trang_thai'])->group(function () {
 
     Route::prefix('/quan-ly/nguoi-dung')->group(function () {
-        Route::get('/', [NguoiDungController::class, 'view']);
-        Route::get('/create', [NguoiDungController::class, 'create']);   
-        Route::get('/edit/{uuid}', [NguoiDungController::class, 'edit']);    
+        Route::get('/', [NguoiDungController::class, 'view'])->name('nguoi-dung.index');
+        Route::get('/create', [NguoiDungController::class, 'create'])->name('nguoi-dung.create');   
+        Route::get('/edit/{uuid}', [NguoiDungController::class, 'edit'])->name('nguoi-dung.edit');;    
     });
 
     Route::prefix('/quan-ly/chuc-vu')->group(function () {
-        Route::get('/', [ChucVuController::class, 'view']);
-        Route::get('/create', [ChucVuController::class, 'create']);
-        Route::get('/edit/{id}', [ChucVuController::class, 'edit']);
+        Route::get('/', [ChucVuController::class, 'view'])->name('chuc-vu.index');
+        Route::get('/create', [ChucVuController::class, 'create'])->name('chuc-vu.create');
+        Route::get('/edit/{id}', [ChucVuController::class, 'edit'])->name('chuc-vu.edit');
     });
 
     Route::prefix('/quan-ly/dia-chi')->group(function () {
-        Route::get('/', [DiaChiController::class, 'view']);
-        Route::get('/create', [DiaChiController::class, 'create']);
-        Route::get('/edit/{id}', [DiaChiController::class, 'edit']);
+        Route::get('/', [DiaChiController::class, 'view'])->name('dia-chi.index');
+        Route::get('/create', [DiaChiController::class, 'create'])->name('dia-chi.create');
+        Route::get('/edit/{id}', [DiaChiController::class, 'edit'])->name('dia-chi.edit');
     });
 
     Route::prefix('/quan-ly/khach-hang')->group(function () {
-        Route::get('/', [KhachHangController::class, 'view']);
-        Route::get('/create', [KhachHangController::class, 'create']);   
-        Route::get('/edit/{uuid}', [KhachHangController::class, 'edit']);    
+        Route::get('/', [KhachHangController::class, 'view'])->name('khach-hang.index');
+        Route::get('/create', [KhachHangController::class, 'create'])->name('khach-hang.create');   
+        Route::get('/edit/{uuid}', [KhachHangController::class, 'edit'])->name('khach-hang.edit');    
     });
 
     Route::prefix('/quan-ly/danh-muc')->group(function () {
-        Route::get('/', [DanhMucController::class, 'view']);
-        Route::get('/create', [DanhMucController::class, 'create']);   
-        Route::get('/edit/{id}', [DanhMucController::class, 'edit']);    
+        Route::get('/', [DanhMucController::class, 'view'])->name('danh-muc.index');
+        Route::get('/create', [DanhMucController::class, 'create'])->name('danh-muc.create');   
+        Route::get('/edit/{id}', [DanhMucController::class, 'edit'])->name('danh-muc.edit');    
     });
 
     Route::prefix('/quan-ly/san-pham')->group(function () {
-        Route::get('/', [SanPhamController::class, 'view']);
-        Route::get('/create', [SanPhamController::class, 'create']);   
-        Route::get('/edit/{key_sp}', [SanPhamController::class, 'edit']);    
+        Route::get('/', [SanPhamController::class, 'view'])->name('san-pham.index');
+        Route::get('/create', [SanPhamController::class, 'create'])->name('san-pham.create');   
+        Route::get('/edit/{key_sp}', [SanPhamController::class, 'edit'])->name('san-pham.edit');    
     });
 
     Route::prefix('/quan-ly/san-pham-chi-tiet')->group(function () {
-        Route::get('/', [SanPhamChiTietController::class, 'view']);
-        Route::get('/create', [SanPhamChiTietController::class, 'create']);   
-        Route::get('/edit/{ma_sp}', [SanPhamChiTietController::class, 'edit']);    
+        Route::get('/', [SanPhamChiTietController::class, 'view'])->name('san-pham-chi-tiet.index');
+        Route::get('/create', [SanPhamChiTietController::class, 'create'])->name('san-pham-chi-tiet.create');   
+        Route::get('/edit/{ma_sp}', [SanPhamChiTietController::class, 'edit'])->name('san-pham-chi-tiet.edit');    
     });
 
     Route::prefix('/quan-ly/hoa-don')->group(function () {
-        Route::get('/', [HoaDonController::class, 'view']);
-        Route::get('/create', [HoaDonController::class, 'create']);   
-        Route::get('/edit/{ma_hd}', [HoaDonController::class, 'edit']);  
-        Route::get('/view-info/{ma_hd}', [HoaDonController::class, 'viewInfo']);  
+        Route::get('/', [HoaDonController::class, 'view'])->name('hoa-don.index');
+        Route::get('/create', [HoaDonController::class, 'create'])->name('hoa-don.create');  
+        Route::get('/edit/{ma_hd}', [HoaDonController::class, 'edit'])->name('hoa-don.edit');  
+        Route::get('/view-info/{ma_hd}', [HoaDonController::class, 'viewInfo'])->name('hoa_don.xemHoaDon');  
     });
 
     Route::prefix('/quan-ly/giam-gia')->group(function () {
-        Route::get('/', [GiamGiaController::class, 'view']);
-        Route::get('/create', [GiamGiaController::class, 'create']);   
-        Route::get('/edit/{id}', [GiamGiaController::class, 'edit']);
+        Route::get('/', [GiamGiaController::class, 'view'])->name('giam-gia.index');
+        Route::get('/create', [GiamGiaController::class, 'create'])->name('giam-gia.create');   
+        Route::get('/edit/{id}', [GiamGiaController::class, 'edit'])->name('giam-gia.edit');
         
-        Route::get('/create-sp-giam-gia', [GiamGiaController::class, 'create_sp_giam_gia']);
+        Route::get('/create-sp-giam-gia', [GiamGiaController::class, 'create_sp_giam_gia'])->name('giam-gia.create-sp-giam-gia');
     });
 
-    Route::get('/quan-ly/thong-ke', [ThongKeController::class, 'thong_ke']);
+    Route::get('/quan-ly/thong-ke', [ThongKeController::class, 'thong_ke'])->name('thong-ke.index');
 
-    Route::put('/nguoi-dung/{id}/mo-khoa', [NguoiDungController::class, 'mokhoa'])
-    ->name('nguoi-dung.mokhoa');
-    Route::put('/khach-hang/{id}/mo-khoa', [KhachHangController::class, 'mokhoa'])
-    ->name('khach-hang.mokhoa');
     Route::get('/quan-ly/danh-gia', [QuanLyDanhGiaController::class, 'index'])
         ->name('quan-ly-danh-gia.index');
     Route::put('/quan-ly/danh-gia/{id}', [QuanLyDanhGiaController::class, 'update'])
@@ -238,20 +234,21 @@ Route::middleware(['auth:admin', 'kiem_tra_quyen', 'kiem_tra_trang_thai'])->grou
     Route::prefix('api')->group(function () {
 
         Route::prefix('nguoi-dung')->group(function () {
-            Route::get('/', [NguoiDungApiController::class, 'index']);
-            Route::get('/{uuid}', [NguoiDungApiController::class, 'show']);
-            Route::post('/', [NguoiDungApiController::class, 'store']);
-            Route::put('/{uuid}', [NguoiDungApiController::class, 'update']);
-            Route::delete('/{uuid}', [NguoiDungApiController::class, 'destroy']);
+            Route::get('/', [NguoiDungApiController::class, 'index'])->name('nguoi-dung.index');
+            Route::get('/{uuid}', [NguoiDungApiController::class, 'show'])->name('nguoi-dung.update');
+            Route::post('/', [NguoiDungApiController::class, 'store'])->name('nguoi-dung.store');
+            Route::put('/{uuid}', [NguoiDungApiController::class, 'update'])->name('nguoi-dung.update');
+            Route::delete('/{uuid}', [NguoiDungApiController::class, 'destroy'])->name('nguoi-dung.destroy');
+            Route::put('/mo-khoa/{uuid}', [NguoiDungApiController::class, 'moKhoa']);
         });
     
         Route::prefix('chuc-vu')->group(function () {
-            Route::get('/', [ChucVuApiController::class, 'index']);
+            Route::get('/', [ChucVuApiController::class, 'index'])->name('chuc-vu.index');
             Route::get('/all', [ChucVuApiController::class, 'getAll']);
-            Route::get('/{id}', [ChucVuApiController::class, 'show']);
-            Route::post('/', [ChucVuApiController::class, 'store']);
-            Route::put('/{id}', [ChucVuApiController::class, 'update']);
-            Route::delete('/{id}', [ChucVuApiController::class, 'destroy']);
+            Route::get('/{id}', [ChucVuApiController::class, 'show'])->name('chuc-vu.update');
+            Route::post('/', [ChucVuApiController::class, 'store'])->name('chuc-vu.store');
+            Route::put('/{id}', [ChucVuApiController::class, 'update'])->name('chuc-vu.update');
+            Route::delete('/{id}', [ChucVuApiController::class, 'destroy'])->name('chuc-vu.destroy');
         });
 
         Route::get('/chuc-nang/all', [ChucVuApiController::class, 'getAllChucNang']
@@ -262,76 +259,76 @@ Route::middleware(['auth:admin', 'kiem_tra_quyen', 'kiem_tra_trang_thai'])->grou
             Route::get('/huyen/{province_id}', [DiaChiApiController::class, 'getHuyen']);
             Route::get('/phuong/{district_id}', [DiaChiApiController::class, 'getPhuong']);
     
-            Route::get('/', [DiaChiApiController::class, 'index']);
-            Route::get('/{id}', [DiaChiApiController::class, 'show']);
-            Route::post('/', [DiaChiApiController::class, 'store']);
-            Route::put('/{id}', [DiaChiApiController::class, 'update']);
-            Route::delete('/{id}', [DiaChiApiController::class, 'destroy']);
+            Route::get('/', [DiaChiApiController::class, 'index'])->name('dia-chi.index');
+            Route::get('/{id}', [DiaChiApiController::class, 'show'])->name('dia-chi.update');
+            Route::post('/', [DiaChiApiController::class, 'store'])->name('dia-chi.store');
+            Route::put('/{id}', [DiaChiApiController::class, 'update'])->name('dia-chi.update');
+            Route::delete('/{id}', [DiaChiApiController::class, 'destroy'])->name('dia-chi.destroy');
         });
     
         Route::prefix('khach-hang')->group(function () {
-            Route::get('/', [KhachHangApiController::class, 'index']);
+            Route::get('/', [KhachHangApiController::class, 'index'])->name('khach-hang.index');
             Route::get('/all', [KhachHangApiController::class, 'getAll']);
-            Route::get('/{uuid}', [KhachHangApiController::class, 'show']);
-            Route::post('/', [KhachHangApiController::class, 'store']);
-            Route::put('/{uuid}', [KhachHangApiController::class, 'update']);
-            Route::delete('/{uuid}', [KhachHangApiController::class, 'destroy']);
+            Route::get('/{uuid}', [KhachHangApiController::class, 'show'])->name('khach-hang.update');
+            Route::post('/', [KhachHangApiController::class, 'store'])->name('khach-hang.store');
+            Route::put('/{uuid}', [KhachHangApiController::class, 'update'])->name('khach-hang.update');
+            Route::delete('/{uuid}', [KhachHangApiController::class, 'destroy'])->name('khach-hang.destroy');
         });
     
         Route::prefix('danh-muc')->group(function () {
-            Route::get('/', [DanhMucApiController::class, 'index']);
+            Route::get('/', [DanhMucApiController::class, 'index'])->name('danh-muc.index');
             Route::get('/all', [DanhMucApiController::class, 'getAll']);
-            Route::get('/{id}', [DanhMucApiController::class, 'show']);
-            Route::post('/', [DanhMucApiController::class, 'store']);
-            Route::put('/{id}', [DanhMucApiController::class, 'update']);
-            Route::delete('/{id}', [DanhMucApiController::class, 'destroy']);
+            Route::get('/{id}', [DanhMucApiController::class, 'show'])->name('danh-muc.update');
+            Route::post('/', [DanhMucApiController::class, 'store'])->name('danh-muc.store');
+            Route::put('/{id}', [DanhMucApiController::class, 'update'])->name('danh-muc.update');
+            Route::delete('/{id}', [DanhMucApiController::class, 'destroy'])->name('danh-muc.destroy');
         });
     
         Route::prefix('san-pham')->group(function () {
-            Route::get('/', [SanPhamApiController::class, 'index']);
+            Route::get('/', [SanPhamApiController::class, 'index'])->name('san-pham.index');
             Route::get('/all', [SanPhamApiController::class, 'getAll']);
-            Route::get('/{key_sp}', [SanPhamApiController::class, 'show']);
-            Route::post('/', [SanPhamApiController::class, 'store']);
-            Route::put('/{key_sp}', [SanPhamApiController::class, 'update']);
-            Route::delete('/{key_sp}', [SanPhamApiController::class, 'destroy']);
+            Route::get('/{key_sp}', [SanPhamApiController::class, 'show'])->name('san-pham.update');
+            Route::post('/', [SanPhamApiController::class, 'store'])->name('san-pham.store');
+            Route::put('/{key_sp}', [SanPhamApiController::class, 'update'])->name('san-pham.update');
+            Route::delete('/{key_sp}', [SanPhamApiController::class, 'destroy'])->name('san-pham.destroy');
         });
 
         Route::prefix('san-pham-chi-tiet')->group(function () {
-            Route::get('/', [SanPhamChiTietApiController::class, 'index']);
+            Route::get('/', [SanPhamChiTietApiController::class, 'index'])->name('san-pham-chi-tiet.index');
             Route::get('/all', [SanPhamChiTietApiController::class, 'getAll']);
-            Route::get('/{ma_sp}', [SanPhamChiTietApiController::class, 'show']);
-            Route::post('/', [SanPhamChiTietApiController::class, 'store']);
-            Route::put('/{ma_sp}', [SanPhamChiTietApiController::class, 'update']);
-            Route::delete('/{ma_sp}', [SanPhamChiTietApiController::class, 'destroy']);
+            Route::get('/{ma_sp}', [SanPhamChiTietApiController::class, 'show'])->name('san-pham-chi-tiet.update');
+            Route::post('/', [SanPhamChiTietApiController::class, 'store'])->name('san-pham-chi-tiet.store');
+            Route::put('/{ma_sp}', [SanPhamChiTietApiController::class, 'update'])->name('san-pham-chi-tiet.update');
+            Route::delete('/{ma_sp}', [SanPhamChiTietApiController::class, 'destroy'])->name('san-pham-chi-tiet.destroy');
         });
 
         Route::prefix('hoa-don')->group(function () {
-            Route::get('/', [HoaDonApiController::class, 'index']);
+            Route::get('/', [HoaDonApiController::class, 'index'])->name('hoa-don.index');
             Route::get('/all', [HoaDonApiController::class, 'getAll']);
-            Route::get('/{ma_hd}', [HoaDonApiController::class, 'show']);
-            Route::post('/', [HoaDonApiController::class, 'store']);
-            Route::put('/{ma_hd}', [HoaDonApiController::class, 'update']);
-            Route::delete('/{ma_hd}', [HoaDonApiController::class, 'destroy']);
+            Route::get('/{ma_hd}', [HoaDonApiController::class, 'show'])->name('hoa-don.update');
+            Route::post('/', [HoaDonApiController::class, 'store'])->name('hoa-don.store');
+            Route::put('/{ma_hd}', [HoaDonApiController::class, 'update'])->name('hoa-don.update');
+            Route::delete('/{ma_hd}', [HoaDonApiController::class, 'destroy'])->name('hoa-don.destroy');
         });
         
         Route::prefix('giam-gia')->group(function () {
-            Route::get('/', [GiamGiaApiController::class, 'index']);
+            Route::get('/', [GiamGiaApiController::class, 'index'])->name('giam-gia.index');
             Route::get('/all', [GiamGiaApiController::class, 'getAll']);
-            Route::get('/{id}', [GiamGiaApiController::class, 'show']);
-            Route::post('/', [GiamGiaApiController::class, 'store']);
-            Route::put('/{id}', [GiamGiaApiController::class, 'update']);
-            Route::delete('/{id}', [GiamGiaApiController::class, 'destroy']);
+            Route::get('/{id}', [GiamGiaApiController::class, 'show'])->name('giam-gia.update');
+            Route::post('/', [GiamGiaApiController::class, 'store'])->name('giam-gia.store');
+            Route::put('/{id}', [GiamGiaApiController::class, 'update'])->name('giam-gia.update');
+            Route::delete('/{id}', [GiamGiaApiController::class, 'destroy'])->name('giam-gia.destroy');
         });
 
         Route::prefix('giam-gia-san-pham')->group(function () {
-            Route::get('/', [GiamGiaApiController::class, 'sanPhamGiamGia']);
-            Route::post('/', [GiamGiaApiController::class, 'themSanPhamGiamGia']);
-            Route::put('/{id}', [GiamGiaApiController::class, 'huySanPhamGiamGia']);
+            Route::get('/', [GiamGiaApiController::class, 'sanPhamGiamGia'])->name('giam-gia.index');
+            Route::post('/', [GiamGiaApiController::class, 'themSanPhamGiamGia'])->name('giam-gia.store');
+            Route::put('/{id}', [GiamGiaApiController::class, 'huySanPhamGiamGia'])->name('giam-gia.update');
         }); 
 
 
         Route::prefix('thong-ke')->group(function () {
-            Route::get('/', [ThongKeApiController::class, 'index']);
+            Route::get('/', [ThongKeApiController::class, 'index'])->name('thong-ke.index');
         });
 
     });

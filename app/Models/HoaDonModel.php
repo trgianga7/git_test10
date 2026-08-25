@@ -17,6 +17,7 @@ class HoaDonModel extends Authenticatable
                         'ten_nguoi_nhan',
                         'sdt_nguoi_nhan',
                         'tong_tien_goc',
+                        'ten_giam_gia',
                         'giam_gia',
                         'loai_giam_gia_hd',
                         'tong_tien_thuc',

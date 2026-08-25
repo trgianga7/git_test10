@@ -22,6 +22,13 @@ body{
     padding:0 20px;
 }
 
+.header .logo-trang-chu{
+    color:white;
+    text-decoration: none;
+    font-size: 30px;
+
+}
+
 /* main */
 .main{
     display:flex;
@@ -30,11 +37,13 @@ body{
 
 /* sidebar */
 .sidebar{
-    width:240px;
+    width:210px;
     background:white;
     border-right:1px solid #ddd;
 
     padding:20px;
+
+    flex-shrink:0;
 }
 
 .sidebar h3{
@@ -69,6 +78,38 @@ body{
 .content{
     flex:1;
     padding:20px;
+    min-width:0;
+    overflow-x:auto;
+}
+
+/*Bảng scroll ngang */
+.table-wrapper{
+    width:100%;
+    overflow-x:auto;
+    overflow-y: hidden;
+}
+
+.table-wrapper table{
+    min-width:1000px;
+    border-collapse:collapse;
+}
+
+.table-wrapper::-webkit-scrollbar{
+    height: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-track{
+    background: #e5e7eb;
+    border-radius: 999px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb{
+    background: #9ca3af;
+    border-radius: 999px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover{
+    background: #6b7280;
 }
 
 /* card */

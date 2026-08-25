@@ -52,7 +52,7 @@ $(document).ready(function () {
     let oldData = null;
 
     $('.select2').select2({
-        allowClear: true,
+        //allowClear: true,
         width: '100%'
     });
 

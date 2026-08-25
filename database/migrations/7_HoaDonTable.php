@@ -10,12 +10,13 @@ return new class extends Migration
     {
         Schema::create('hoa_don', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_khach_hang')->default(0)->index();
+            $table->integer('id_khach_hang')->nullable()->index();
             $table->string('ma_hd')->unique();
             $table->string('dia_chi_hd');
             $table->string('ten_nguoi_nhan')->default('Không có')->index();
             $table->string('sdt_nguoi_nhan')->default('Không có')->index();
             $table->integer('tong_tien_goc');
+            $table->string('ten_giam_gia')->nullable();
             $table->integer('giam_gia');
             $table->string('loai_giam_gia_hd')->nullable();
             $table->integer('tong_tien_thuc');

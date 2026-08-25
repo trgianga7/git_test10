@@ -31,12 +31,12 @@ class NguoiDungController extends Controller
         return view('nguoi_dung.update', compact('uuid'));
     }
 
-    public function mokhoa($id)
+    /*public function mokhoa($id)
     {
         $this->nguoiDungService->mokhoa($id);
 
         return redirect()->route('nguoi-dung.index')
             ->with('success', 'Đã xóa thời gian khóa!');
-    }
+    }*/
 
 }

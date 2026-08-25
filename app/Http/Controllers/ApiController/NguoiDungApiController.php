@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use App\Services\NguoiDung\NguoiDungService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\NguoiDung\NguoiDungResource;
 
 class NguoiDungApiController extends Controller
 {
@@ -17,15 +18,27 @@ class NguoiDungApiController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->nguoiDungService->getList($request->search)
-        );
+        );*/
+
+        $nguoiDung = $this->nguoiDungService->getList($request->search);
+
+        return response()->json([
+            'data' => NguoiDungResource::collection($nguoiDung),
+            'current_page' => $nguoiDung->currentPage(),
+            'last_page' => $nguoiDung->lastPage(),
+            'per_page' => $nguoiDung->perPage(),
+            'total' => $nguoiDung->total()
+        ]);
     }
 
     public function show($uuid)
     {
+        $nguoiDungDetail = $this->nguoiDungService->getDetail($uuid);
+
         return response()->json(
-            $this->nguoiDungService->getDetail($uuid)
+            new NguoiDungResource($nguoiDungDetail)
         );
     }
 
@@ -51,7 +64,7 @@ class NguoiDungApiController extends Controller
     public function update(Request $request, $uuid)
     {
         $timNguoiDung = $this->nguoiDungService->getDetail($uuid);
-
+        
         $data = $request->validate([
             'id_chuc_vu' => 'required',
             'ten_nguoi_dung' => 'required',
@@ -80,6 +93,16 @@ class NguoiDungApiController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Xóa thành công'
+        ]);
+    }
+
+    public function moKhoa($uuid)
+    {
+        $nguoiDung = $this->nguoiDungService->mokhoa($uuid);
+
+        return response()->json([
+            'message' => 'Đã mở khóa tài khoản',
+            'data' => $nguoiDung
         ]);
     }
 

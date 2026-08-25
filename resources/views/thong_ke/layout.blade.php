@@ -31,27 +31,28 @@
     </div>
 
     <div class="stat-card bg-secondary">
-        <h4>Tổng chi phí</h4>
-        <h2 id="chiPhi">0 đ</h2>
-    </div>
-
-    <div class="stat-card bg-danger">
-        <h4>Tổng lợi nhuận</h4>
-        <h2 id="loiNhuan">0 đ</h2>
+        <h4>Số đơn hàng chưa hoàn thành</h4>
+        <h2 id="donHangChuaHT">0</h2>
     </div>
 
 </div>
 
 <div class="button-group">
-    <button class="btn btn-danger" onclick="showChart('top10')">Top 10 sản phẩm bán chạy</button>
+    <button class="btn btn-danger" onclick="showChart('top10-sp')">Top 10 sản phẩm bán chạy</button>
+    <button class="btn btn-danger" onclick="showChart('top10-kh')">Top 10 khách hàng</button>
     <button class="btn btn-primary" onclick="showChart('day')">Biểu đồ doanh thu theo ngày</button>
     <button class="btn btn-success" onclick="showChart('month')">Biểu đồ doanh thu theo tháng</button>
     <button class="btn btn-warning" onclick="showChart('year')">Biểu đồ doanh thu theo năm</button>
 </div>
 
-<div id="chart-top10" class="chart-section">
+<div id="chart-top10-sp" class="chart-section">
     <h3>Top 10 sản phẩm bán chạy</h3>
-    <canvas id="chartTop"></canvas>
+    <canvas id="chartTopSp"></canvas>
+</div>
+
+<div id="chart-top10-kh" class="chart-section">
+    <h3>Top 10 khách hàng</h3>
+    <canvas id="chartTopKh"></canvas>
 </div>
 
 <div id="chart-day" class="chart-section">
@@ -77,13 +78,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    let chartTop = null;
+    let chartTopSp = null;
+    let chartTopKh = null;
     let chartDay = null;
     let chartMonth = null;
     let chartYear = null;
     
     function showChart(type) {
-        document.getElementById('chart-top10').style.display = 'none';
+        document.getElementById('chart-top10-sp').style.display = 'none';
+        document.getElementById('chart-top10-kh').style.display = 'none';
         document.getElementById('chart-day').style.display = 'none';
         document.getElementById('chart-month').style.display = 'none';
         document.getElementById('chart-year').style.display = 'none';
@@ -110,23 +113,21 @@
             'Chưa bán sản phẩm nào'
         );
 
-        $('#chiPhi').text(
-            Number(res.chiPhi).toLocaleString() + ' đ'
+        $('#donHangChuaHT').text(
+            res.donHangChuaHoanThanh ?? 
+            'Chưa có hóa đơn nào'
         );
 
-        $('#loiNhuan').text(
-            Number(res.loiNhuan).toLocaleString() + ' đ'
-        );
     }
 
-    function renderChartTop10(data){
+    function renderChartTop10Sp(data){
 
-        if(chartTop){
-            chartTop.destroy();
+        if(chartTopSp){
+            chartTopSp.destroy();
         }
 
-        chartTop = new Chart(
-            document.getElementById('chartTop'),
+        chartTopSp = new Chart(
+            document.getElementById('chartTopSp'),
             {
                 type:'bar',
 
@@ -138,6 +139,45 @@
                         data:data.map(x => x.tong_da_ban)
                     }]
                 }
+            }
+        );
+    }
+
+    function renderChartTop10Kh(data){
+
+        if(chartTopKh){
+            chartTopKh.destroy();
+        }
+
+        chartTopKh = new Chart(
+            document.getElementById('chartTopKh'),
+            {
+                type:'bar',
+
+                data:{
+                    labels: data.map(x => [
+                        x.ten_khach_hang,
+                        x.sdt
+                    ]),
+
+                    datasets:[{
+                        label:'Tổng chi tiêu',
+                        data:data.map(x => x.tong_chi_tieu)
+                    }]
+                },
+
+                options:{
+                    plugins:{
+                        tooltip:{
+                            callbacks:{
+                                title:function(context){
+                                    return data[context[0].dataIndex].ten_khach_hang;
+                                }
+                            }
+                        }
+                    }
+                }
+            
             }
         );
     }
@@ -237,7 +277,9 @@
 
                 renderThongKe(res);
 
-                renderChartTop10(res.top10SanPham);
+                renderChartTop10Sp(res.top10SanPham);
+
+                renderChartTop10Kh(res.top10KhachHang);
 
                 renderChartDay(res.doanhThuTheoNgay);
 
@@ -245,7 +287,7 @@
 
                 renderChartYear(res.doanhThuTheoNam);
 
-                showChart('top10');
+                showChart('top10Sp');
             }
         });
 

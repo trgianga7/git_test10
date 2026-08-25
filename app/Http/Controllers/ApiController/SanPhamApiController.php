@@ -5,6 +5,8 @@ namespace App\Http\Controllers\ApiController;
 use App\Services\SanPham\SanPhamService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\SanPham\SanPhamResource;
+use App\Http\Resources\QuanLyResource\SanPham\SanPhamSelectResource;
 
 class SanPhamApiController extends Controller
 {
@@ -17,15 +19,29 @@ class SanPhamApiController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->sanPhamService->getList($request->search)
-        );
+        );*/
+        $sanPham = $this->sanPhamService->getList($request->search);
+
+        return response()->json([
+            'data' => SanPhamResource::collection($sanPham),
+            'current_page' => $sanPham->currentPage(),
+            'last_page' => $sanPham->lastPage(),
+            'per_page' => $sanPham->perPage(),
+            'total' => $sanPham->total()
+        ]);
     }
 
     public function getAll(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->sanPhamService->getListAll()
+        );*/
+        $sanPhamHoatDong = $this->sanPhamService->getListAll($request);
+
+        return response()->json(
+            SanPhamSelectResource::collection($sanPhamHoatDong)
         );
     }
 

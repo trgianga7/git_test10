@@ -19,16 +19,14 @@ class ThongKeApiController extends Controller
     {
         $tongDoanhThu = $this->thongKeService->tongDoanhThu();
 
-        $chiPhi = $this->thongKeService->chiPhi();
-
         return response()->json([
             'tongDoanhThu' => $tongDoanhThu,
             'tongDonHang' => $this->thongKeService->tongDonHang(),
             'tongSanPham' => $this->thongKeService->tongSanPham(),
             'sanPhamBanChay' => $this->thongKeService->sanPhamBanChay(),
-            'chiPhi' => $chiPhi,
-            'loiNhuan' => $tongDoanhThu - $chiPhi,
+            'donHangChuaHoanThanh' => $this->thongKeService->donHangChuaHoanThanh(),
             'top10SanPham' => $this->thongKeService->top10SanPham(),
+            'top10KhachHang' => $this->thongKeService->top10KhachHang(),
             'doanhThuTheoNgay' => $this->thongKeService->doanhThuTheoNgay(),
             'doanhThuTheoThang' => $this->thongKeService->doanhThuTheoThang(),
             'doanhThuTheoNam' => $this->thongKeService->doanhThuTheoNam()

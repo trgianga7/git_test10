@@ -196,7 +196,7 @@
 }
 
 .box-tong-tien{
-    margin-top:20px;
+    margin-top:30px;
     padding:16px;
     border:1px solid #ddd;
     border-radius:10px;
@@ -343,4 +343,9 @@
 .badge-default{
     background:#e9ecef;
     color:#495057;
+}
+
+/*Nút xóa sản phẩm chọn*/
+.xoa-san-pham-chon{
+    background-color: red;
 }

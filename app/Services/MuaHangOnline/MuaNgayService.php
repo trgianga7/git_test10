@@ -42,32 +42,15 @@ class MuaNgayService
 
                 [
                     'id' => $sp->id,
-
                     'ma_sp' => $sp->ma_sp,
-
-                    'ten_san_pham' =>
-                        $sp->sanPham->ten_san_pham,
-
-                    'ten_phu' =>
-                        $sp->ten_phu,
-
-                    'gia_ap_dung' =>
-                        $giaApDung,
-
-                    'gia_goc' =>
-                        $sp->gia_ban,
-
-                    'gia_khuyen_mai' =>
-                        $sp->gia_khuyen_mai,
-
-                    'so_luong' =>
-                        $soLuong,
-
-                    'ton_kho' =>
-                        $sp->so_luong,
-
-                    'anh' =>
-                        $sp->anh_dai_dien
+                    'ten_san_pham' => $sp->sanPham->ten_san_pham,
+                    'ten_phu' => $sp->ten_phu,
+                    'gia_ap_dung' => $giaApDung,
+                    'gia_goc' => $sp->gia_ban,
+                    'gia_khuyen_mai' => $sp->gia_khuyen_mai,
+                    'so_luong' => $soLuong,
+                    'ton_kho' => $sp->so_luong,
+                    'anh' => $sp->anh_dai_dien
                 ]
 
             ]

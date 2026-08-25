@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use App\Services\HoaDon\HoaDonService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\HoaDon\HoaDonResource;
 
 class HoaDonApiController extends Controller
 {
@@ -17,20 +18,29 @@ class HoaDonApiController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->hoaDonService->getList(
                 $request->search,
                 $request->trang_thai
             )
-        );
+        );*/
+        $hoaDon = $this->hoaDonService->getList($request->search, $request->trang_thai);
+
+        return response()->json([
+            'data' => HoaDonResource::collection($hoaDon),
+            'current_page' => $hoaDon->currentPage(),
+            'last_page' => $hoaDon->lastPage(),
+            'per_page' => $hoaDon->perPage(),
+            'total' => $hoaDon->total()
+        ]);
     }
 
-    public function getAll(Request $request)
+    /*public function getAll(Request $request)
     {
         return response()->json(
             $this->hoaDonService->getListAll()
         );
-    }
+    }*/
     
     /*public function show($id)
     {

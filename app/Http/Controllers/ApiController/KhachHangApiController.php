@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use App\Services\KhachHang\KhachHangService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\KhachHang\KhachHangSelectResource;
 
 class KhachHangApiController extends Controller
 {
@@ -24,8 +25,13 @@ class KhachHangApiController extends Controller
 
     public function getAll(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->khachHangService->getListAll()
+        );*/
+        $khachHangDetail = $this->khachHangService->getListAll();
+
+        return response()->json(
+            KhachHangSelectResource::collection($khachHangDetail)
         );
     }
 

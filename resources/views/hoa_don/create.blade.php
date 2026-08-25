@@ -175,8 +175,8 @@ function closeModal(){
 $(document).ready(function () {
 
     $('#id_khach_hang').select2({
-        allowClear: true,
-        placeholder: '-- Chọn khách hàng --',
+        //allowClear: true,
+        //placeholder: '-- Chọn khách hàng --',
         width: '100%'
     });
 
@@ -254,7 +254,7 @@ function renderSanPham() {
                 <td>${Number(sp.gia).toLocaleString()}</td>
                 <td>${sp.so_luong}</td>
                 <td>
-                    <button onclick="xoaSanPham(${index})">X</button>
+                    <button class="xoa-san-pham-chon" onclick="xoaSanPham(${index})">X</button>
                 </td>
             </tr>
         `;
@@ -282,7 +282,7 @@ function save() {
 
     if (!validateField('#id_khach_hang', 'Vui lòng chọn khách hàng')) return;
     if (!validateField('#ten_nguoi_nhan', 'Vui lòng nhập tên người nhận')) return;
-    if (!validateField('#sdt_nguoi_nhan', 'Vui lòng nhập số điện thoại')) return;
+    if (!validateField('#sdt_nguoi_nhan', 'Vui lòng nhập số điện thoại người nhận')) return;
     if (!validateField('#dia_chi_hd', 'Vui lòng nhập địa chỉ nhận hàng')) return;
 
     let loaiHinh = $('input[name="loai_hinh"]:checked').val();
@@ -384,8 +384,9 @@ function renderSPCT(data){
 
     data.forEach(sp => {
 
+        let gia = sp.gia_khuyen_mai ?? sp.gia_ban;
         let disabled = sp.so_luong <= 0 ? 'disabled' : '';
-        let rowClass = sp.so_luong <= 0 ? 'style="opacity:0.5"' : '';
+        //let rowClass = sp.so_luong <= 0 ? 'style="opacity:0.5"' : '';
         let anh = sp.anh_dai_dien? `/storage/${sp.anh_dai_dien}`: '';
 
         html += `
@@ -394,13 +395,11 @@ function renderSPCT(data){
                     <input type="checkbox" class="chk-sp" value="${sp.id}">
                 </td>
                 <td>
-                    <img src="${anh}"
-                         width="50"
-                         height="50"
-                         style="object-fit:cover;border-radius:6px;">
+                    <img src="${anh}" width="50" height="50" 
+                        style="object-fit:cover;border-radius:6px;">
                 </td>
                 <td>${sp.sanpham.ten_san_pham} - ${sp.ten_phu}</td>
-                <td>${Number(sp.gia_ban).toLocaleString('vi-VN')}</td>
+                <td>${Number(gia).toLocaleString('vi-VN')}</td>
                 <td>${sp.so_luong}</td>
                 <td>
                     <input
@@ -467,7 +466,7 @@ $('.chk-sp:checked').each(function(){
         dsSanPham.push({
             id_san_pham_chi_tiet: id,
             ten: sp.sanpham.ten_san_pham + ' - ' + sp.ten_phu,
-            gia: sp.gia_ban,
+            gia: sp.gia_khuyen_mai ?? sp.gia_ban,
             so_luong: qty,
             anh: sp.anh_dai_dien
         });

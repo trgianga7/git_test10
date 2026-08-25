@@ -52,7 +52,8 @@
 $(document).ready(function () {
 
     $('.select2').select2({
-        allowClear: true,
+        //allowClear: true,
+        placeholder: '-- Chọn chức vụ --',
         width: '100%'
     });
 
@@ -77,6 +78,7 @@ $(document).ready(function () {
             });
 
             $('#id_chuc_vu').html(html);
+
         }
     });
 

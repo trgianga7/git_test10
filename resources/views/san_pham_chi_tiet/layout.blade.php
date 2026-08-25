@@ -18,25 +18,27 @@
     <input id="search" class="search" placeholder="Tìm kiếm...">
 </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>STT</th>
-            <th>Mã sản phẩm</th>
-            <th>Ảnh sản phẩm</th>
-            <th>Tên sản phẩm</th>
-            <th>Tên phụ</th>
-            <th>Giá bán</th>
-            <th>Giá khuyến mãi</th>
-            <th>Số lượng</th>
-            <th>Khuyến mãi</th>
-            <th>Trạng thái</th>
-            <th>Chức năng</th> 
-        </tr>
-    </thead>
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã sản phẩm</th>
+                <th>Ảnh sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Tên phụ</th>
+                <th>Giá bán</th>
+                <th>Giá khuyến mãi</th>
+                <th>Số lượng</th>
+                <th>Khuyến mãi</th>
+                <th>Trạng thái</th>
+                <th>Chức năng</th> 
+            </tr>
+        </thead>
 
-    <tbody id="tbody"></tbody>
-</table>
+        <tbody id="tbody"></tbody>
+    </table>
+</div>
 
 <div id="tong-ban-ghi" class="tong-ban-ghi"></div>
 <div id="pagination"></div>
@@ -67,11 +69,11 @@ $(document).ready(function () {
             let stt = (currentPage - 1) * perPage + index + 1;
 
             let anh = spct.anh_dai_dien
-            ? `<img src="/storage/${spct.anh_dai_dien}"
-                    width="50"
-                    height="50"
-                    style="object-fit:cover; border-radius:6px;">`
-            : 'Không có';
+                ? `<img src="/storage/${spct.anh_dai_dien}"
+                        width="50"
+                        height="50"
+                        style="object-fit:cover; border-radius:6px;">`
+                : 'Không có';
 
             html += `
                 <tr>

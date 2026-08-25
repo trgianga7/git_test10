@@ -33,10 +33,14 @@
     </span>
 </div>
 
-<div class="form-group">
+<div class="div-button">
     <button id="btn-save">
         Lưu
     </button>
+
+    <a href="/quan-ly/giam-gia" class="btn-back">
+        Quay lại
+    </a>
 </div>
 
 @endsection
@@ -51,7 +55,7 @@
 $(document).ready(function(){
 
     $('.select2').select2({
-        allowClear: true,
+        //allowClear: true,
         width: '100%'
     });
 

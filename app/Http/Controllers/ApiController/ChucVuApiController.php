@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ChucVu\ChucVuService;
+use App\Http\Resources\QuanLyResource\ChucVu\ChucVuSelectResource;
 
 class ChucVuApiController extends Controller
 {
@@ -17,17 +18,18 @@ class ChucVuApiController extends Controller
 
     public function index(Request $request)
     {
-        $data = $this->chucVuService->getList(
-            $request->search
-        );
+        $data = $this->chucVuService->getList($request->search);
 
         return response()->json($data);
+
     }
 
     public function getAll()
     {
+        $chucVuHoatDong = $this->chucVuService->getListAll();
+
         return response()->json(
-            $this->chucVuService->getListAll()
+            ChucVuSelectResource::collection($chucVuHoatDong)
         );
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use App\Services\GiamGia\GiamGiaService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\GiamGia\GiamGiaSanPhamResource;
 
 class GiamGiaApiController extends Controller
 {
@@ -85,13 +86,22 @@ class GiamGiaApiController extends Controller
     //Giảm giá theo sản phẩm
     public function sanPhamGiamGia(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
 
             $this->giamGiaService->sanPhamGiamGia(
                     $request->search
                 )
 
-        );
+        );*/
+        $giamGiaSp = $this->giamGiaService->sanPhamGiamGia($request->search);
+
+        return response()->json([
+            'data' => GiamGiaSanPhamResource::collection($giamGiaSp),
+            'current_page' => $giamGiaSp->currentPage(),
+            'last_page' => $giamGiaSp->lastPage(),
+            'per_page' => $giamGiaSp->perPage(),
+            'total' => $giamGiaSp->total()
+        ]);
     }
 
     public function themSanPhamGiamGia(Request $request)

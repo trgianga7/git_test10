@@ -61,6 +61,22 @@
         <tbody id="ds_san_pham"></tbody>
     </table>
 
+    <div class="box-ma-giam-gia">
+        <h4>Thông tin giảm giá áp dụng</h4>
+        <div class="line"></div>
+
+        <div class="tt-giam-gia">
+            <span>Tên giảm giá</span>
+            <span id="ten_giam_gia"></span>
+        </div>
+
+        <div class="tt-giam-gia">
+            <span>Giá trị giảm giá</span>
+            <span id="gia_tri_giam_gia"></span>
+        </div>
+
+    </div>
+
     <div class="box-tong-tien">
         <div class="dong-tien">
             <span>Tổng tiền gốc</span>
@@ -100,6 +116,9 @@ $(function(){
             2: 'Thanh toán chuyển khoản'
         };
 
+        let giamGia =
+        hd.loai_giam_gia_hd === '%' ? hd.giam_gia + ' %' : Number(hd.giam_gia).toLocaleString('vi-VN') + ' đ';
+
         $('#ma_hd_text').text('Mã hóa đơn: ' + hd.ma_hd);
         //console.log(hd.ngay_tao);
         $('#ngay_tao').text('Ngày tạo: ' + formatDate(hd.ngay_tao));
@@ -110,11 +129,7 @@ $(function(){
 
         $('#loai_hinh').text(loaiHinh[hd.loai_hinh] ?? 'Không xác định');
 
-        $('#tt_thanhtoan').text(
-            hd.trang_thai_thanh_toan == 1
-            ? 'Đã thanh toán'
-            : 'Chưa thanh toán'
-        );
+        $('#tt_thanhtoan').text(hd.trang_thai_thanh_toan == 1 ? 'Đã thanh toán' : 'Chưa thanh toán');
 
         let tt = res.listTrangThai.find(
             x => x.id == hd.trang_thai
@@ -129,9 +144,13 @@ $(function(){
 
         renderSanPham(hd.chi_tiets);
 
+        $('#ten_giam_gia').text(hd.ten_giam_gia);
+
+        $('#gia_tri_giam_gia').text(giamGia);
+
         $('#tong_goc').text(Number(hd.tong_tien_goc).toLocaleString()+' đ');
 
-        $('#giam_gia').text(Number(hd.giam_gia).toLocaleString()+' đ');
+        $('#giam_gia').text(giamGia);
 
         $('#tong_thuc').text(Number(hd.tong_tien_thuc).toLocaleString()+' đ');
 
@@ -188,11 +207,7 @@ function renderTimeline(currentStatus, list){
             <div class="trang-thai-ds
                 ${currentStatus==s.id?'active':''}">
                 <strong>${s.text}</strong>
-                <p>${
-                    map[s.id]
-                    ? formatDate(map[s.id].thoi_gian_trang_thai)
-                    : ''
-                }</p>
+                <p>${map[s.id] ? formatDate(map[s.id].thoi_gian_trang_thai) : ''}</p>
             </div>
         `;
     });
@@ -200,7 +215,19 @@ function renderTimeline(currentStatus, list){
     $('#timeline').html(html);
 }
 
-function formatDate(date){
-    return new Date(date).toLocaleString('vi-VN');
+function formatDate(dateString) {
+
+    let d = new Date(dateString);
+
+    let ngay = String(d.getDate()).padStart(2, '0');
+    let thang = String(d.getMonth() + 1).padStart(2, '0');
+    let nam = d.getFullYear();
+
+    let gio = String(d.getHours()).padStart(2, '0');
+    let phut = String(d.getMinutes()).padStart(2, '0');
+    let giay = String(d.getSeconds()).padStart(2, '0');
+
+    return `${ngay}/${thang}/${nam} ${gio}:${phut}:${giay}`;
 }
+
 </script>

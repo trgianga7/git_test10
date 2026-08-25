@@ -26,69 +26,46 @@
             <div id="savedAddressBox" style="display:none;">
                 <label>Chọn địa chỉ</label>
 
-                <select
-                    id="dia_chi_co_san"
-                    class="select-address">
+                <select id="dia_chi_co_san" class="select-address">
                 </select>
             </div>
 
             <div id="newAddressBox">
                 <label>Nhập địa chỉ mới</label>
 
-                <input
-                    type="text"
-                    id="dia_chi_moi"
-                    placeholder="Nhập địa chỉ">
+                <input type="text" id="dia_chi_moi" placeholder="Nhập địa chỉ">
             </div>
 
             <label>Mã giảm giá</label>
 
-            <input
-                type="hidden"
-                id="ma_giam_gia_ap_dung">
+            <input type="hidden" id="ma_giam_gia_ap_dung">
 
             <div class="giam-gia-group">
 
-                <input
-                    type="text"
-                    id="ma_giam_gia"
-                    placeholder="Nhập mã">
+                <input type="text" id="ma_giam_gia" placeholder="Nhập mã">
 
-                <button
-                    type="button"
-                    id="btnApDung">
-
+                <button type="button" id="btnApDung">
                     Áp dụng
-
                 </button>
 
             </div>
 
-            <p
-                id="giamGiaInfo"
-                style="color:green">
-            </p>
+            <p id="giamGiaInfo" style="color:green"></p>
 
             <label>Hình thức thanh toán</label>
 
             <div class="payment-method">
 
                 <label class="payment-option">
-                    <input
-                        type="radio"
-                        name="phuong_thuc"
-                        value="cod"
-                        checked>
+                    <input type="radio" name="phuong_thuc" value="cod" checked>
 
                     COD
+
                 </label>
 
                 <label class="payment-option">
 
-                    <input
-                        type="radio"
-                        name="phuong_thuc"
-                        value="pay">
+                    <input type="radio" name="phuong_thuc" value="pay">
 
                     Thanh toán số dư
                     (
@@ -99,10 +76,7 @@
 
                 <label class="payment-option">
 
-                    <input
-                        type="radio"
-                        name="phuong_thuc"
-                        value="qr">
+                    <input type="radio" name="phuong_thuc" value="qr">
 
                     QR
 
@@ -110,12 +84,8 @@
 
             </div>
 
-            <button
-                type="button"
-                id="btnSubmit">
-
+            <button type="button" id="btnSubmit">
                 Xác nhận đặt hàng
-
             </button>
 
         </form>
@@ -219,17 +189,12 @@ function loadCheckout()
 
 function renderThongTinNguoiDung(res)
 {
-    $('#ten_nguoi_nhan')
-        .val(res.ten_nguoi_nhan ?? '');
+    $('#ten_nguoi_nhan').val(res.ten_nguoi_nhan ?? '');
 
-    $('#sdt_nguoi_nhan')
-        .val(res.sdt ?? '');
+    $('#sdt_nguoi_nhan').val(res.sdt ?? '');
 
-    $('#so_du')
-        .text(
-            Number(res.so_du)
-                .toLocaleString() + ' đ'
-        );
+    $('#so_du').text(Number(res.so_du).toLocaleString() + ' đ');
+
 }
 
 function renderDiaChi(diaChi)
@@ -255,30 +220,20 @@ function renderGioHang(cart)
 
     cart.forEach(item => {
 
-        const gia =
-            Number(item.gia_ap_dung);
+        const gia = Number(item.gia_ap_dung);
 
-        const thanhTien =
-            gia * Number(item.so_luong);
+        const thanhTien = gia * Number(item.so_luong);
 
         html += `
             <div class="cart-item">
 
                 <div class="cart-left">
 
-                    <img
-                        src="${
-                            item.anh
-                            ? '/storage/' + item.anh
-                            : '/storage/anh_san_pham/no-image.jpg'
-                        }"
-                    >
+                    <img src="${item.anh ? '/storage/' + item.anh : '/storage/anh_san_pham/no-image.jpg'}">
 
                     <div>
 
-                        <strong>
-                            ${item.ten_san_pham}
-                        </strong>
+                        <strong>${item.ten_san_pham}</strong>
 
                         <br>
 
@@ -286,8 +241,7 @@ function renderGioHang(cart)
 
                         <br>
 
-                        SL:
-                        ${item.so_luong}
+                        Số lượng: ${item.so_luong}
 
                     </div>
 
@@ -303,23 +257,14 @@ function renderGioHang(cart)
         `;
     });
 
-    $('#checkout-cart-list')
-        .html(html);
+    $('#checkout-cart-list').html(html);
 }
 
 function renderTongTien(tongTien)
 {
-    $('#tongGoc')
-        .text(
-            Number(tongTien)
-                .toLocaleString()
-        );
+    $('#tongGoc').text(Number(tongTien).toLocaleString());
 
-    $('#tongSauGiam')
-        .text(
-            Number(tongTien)
-                .toLocaleString()
-        );
+    $('#tongSauGiam').text(Number(tongTien).toLocaleString());
 }
 
 function datHang()
@@ -328,13 +273,11 @@ function datHang()
 
     if ($('#toggleAddress').is(':checked')) {
 
-        diaChi =
-            $('#dia_chi_co_san').val();
+        diaChi = $('#dia_chi_co_san').val();
 
     } else {
 
-        diaChi =
-            $('#dia_chi_moi').val();
+        diaChi = $('#dia_chi_moi').val();
     }
 
     ajaxRequest({
@@ -357,7 +300,6 @@ function datHang()
         },
 
         successCallback: function () {
-
            
         }
     });
@@ -370,10 +312,7 @@ function apDungMaGiamGia()
 
     if (!maGiamGia) {
 
-        showToast(
-            'Vui lòng nhập mã giảm giá',
-            'warning'
-        );
+        showToast('Vui lòng nhập mã giảm giá', 'warning');
 
         return;
     }
@@ -392,67 +331,37 @@ function apDungMaGiamGia()
 
             if (!res.success) {
 
-                showToast(
-                    'Mã giảm giá không hợp lệ',
-                    'warning'
-                );
+                showToast('Mã giảm giá không hợp lệ', 'warning');
 
                 return;
             }
 
-            $('#ma_giam_gia_ap_dung')
-                .val(maGiamGia);
+            $('#ma_giam_gia_ap_dung').val(maGiamGia);
 
-            const tongGoc =
-                Number(
-                    $('#tongGoc')
-                        .text()
-                        .replace(/\./g, '')
-                        .replace(/,/g, '')
-                );
+            const tongGoc = Number($('#tongGoc').text().replace(/\./g, '').replace(/,/g, ''));
 
             let soTienGiam = 0;
 
             if (res.loai == 0) {
 
-                soTienGiam =
-                    Number(res.gia_tri);
+                soTienGiam = Number(res.gia_tri);
 
             } else {
 
-                soTienGiam =
-                    tongGoc *
-                    Number(res.gia_tri) / 100;
+                soTienGiam = tongGoc * Number(res.gia_tri) / 100;
             }
 
-            soTienGiam =
-                Math.min(
-                    soTienGiam,
-                    tongGoc
-                );
+            soTienGiam = Math.min(soTienGiam, tongGoc);
 
-            const tongSauGiam =
-                tongGoc - soTienGiam;
+            const tongSauGiam = tongGoc - soTienGiam;
 
-            $('#soTienGiam')
-                .text(
-                    Math.round(soTienGiam)
-                        .toLocaleString()
-                );
+            $('#soTienGiam').text(Math.round(soTienGiam).toLocaleString());
 
-            $('#tongSauGiam')
-                .text(
-                    Math.round(tongSauGiam)
-                        .toLocaleString()
-                );
+            $('#tongSauGiam').text(Math.round(tongSauGiam).toLocaleString());
 
             $('#giamGiaInfo').text(
 
-                res.loai == 0
-
-                ? `Đã áp dụng giảm ${Number(res.gia_tri).toLocaleString()}đ`
-
-                : `Đã áp dụng giảm ${res.gia_tri}%`
+                res.loai == 0 ? `Đã áp dụng giảm ${Number(res.gia_tri).toLocaleString()}đ` : `Đã áp dụng giảm ${res.gia_tri}%`
             );
         }
     });

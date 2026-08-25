@@ -5,6 +5,8 @@ namespace App\Http\Controllers\ApiController;
 use App\Services\SanPhamChiTiet\SanPhamChiTietService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\SanPhamChiTiet\SanPhamChiTietResource;
+use App\Http\Resources\QuanLyResource\SanPhamChiTiet\SanPhamChiTietSelectResource;
 
 class SanPhamChiTietApiController extends Controller
 {
@@ -17,15 +19,30 @@ class SanPhamChiTietApiController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->sanPhamChiTietService->getList($request->search)
-        );
+        );*/
+
+        $sanPhamCt = $this->sanPhamChiTietService->getList($request->search);
+
+        return response()->json([
+            'data' => SanPhamChiTietResource::collection($sanPhamCt),
+            'current_page' => $sanPhamCt->currentPage(),
+            'last_page' => $sanPhamCt->lastPage(),
+            'per_page' => $sanPhamCt->perPage(),
+            'total' => $sanPhamCt->total()
+        ]);
     }
 
     public function getAll(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->sanPhamChiTietService->getListAll()
+        );*/
+        $sanPhamCtHoatDong = $this->sanPhamChiTietService->getListAll($request);
+
+        return response()->json(
+            SanPhamChiTietSelectResource::collection($sanPhamCtHoatDong)
         );
     }
 

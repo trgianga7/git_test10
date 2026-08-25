@@ -49,6 +49,12 @@
     </div>
 </div>
 
+<div id="mo-khoa-box" style="display:none; margin-top:10px;">
+    <button type="button" class="btn-mo-khoa" onclick="moKhoa()">
+        🔓 Mở khóa tài khoản
+    </button>
+</div>
+
 <div class="div-button">
     <button onclick="update()">Cập nhật</button>
     <a href="/quan-ly/nguoi-dung" class="btn-back">Quay lại</a>
@@ -69,7 +75,7 @@ $(document).ready(function () {
     let oldData = null;
 
     $('.select2').select2({
-        allowClear: true,
+        //allowClear: true,
         width: '100%'
     });
 
@@ -92,6 +98,12 @@ $(document).ready(function () {
 
             $('input[name="trang_thai"][value="' + res.trang_thai + '"]').prop('checked', true);
 
+            if (res.thoi_gian_khoa) {
+                $('#mo-khoa-box').show();
+            } else {
+                $('#mo-khoa-box').hide();
+            }
+
             loadChucVu(res.id_chuc_vu);
         }
 
@@ -107,8 +119,7 @@ $(document).ready(function () {
 
             successCallback:function(res){
 
-                let html =
-                    '<option value="">-- Chọn chức vụ --</option>';
+                let html = '<option value="">-- Chọn chức vụ --</option>';
 
                 res.forEach(cv => {
 
@@ -134,6 +145,38 @@ $(document).ready(function () {
         $(this).next('.select2-container').removeClass('error');
     });
 });
+
+function moKhoa(){
+
+    if(!confirm('Bạn có chắc muốn mở khóa tài khoản này?')){
+        return;
+    }
+
+    ajaxRequest({
+
+        url: '/api/nguoi-dung/mo-khoa/' + uuid,
+
+        type: 'PUT',
+
+        loading: true,
+
+        showSuccess: false,
+
+        successCallback:function(res){
+
+            showToast(
+                res.message || 'Đã mở khóa tài khoản',
+                'success'
+            );
+
+            $('#mo-khoa-box').hide();
+
+            $('input[name="trang_thai"][value="1"]').prop('checked', true);
+
+        }
+
+    });
+}
 
 function validateField(selector, message){
 

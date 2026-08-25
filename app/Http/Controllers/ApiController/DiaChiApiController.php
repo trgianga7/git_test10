@@ -9,6 +9,7 @@ use App\Models\APIModel\PhuongModel;
 use App\Services\DiaChi\DiaChiService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuanLyResource\DiaChi\DiaChiResource;
 
 class DiaChiApiController extends Controller
 {
@@ -21,9 +22,19 @@ class DiaChiApiController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json(
+        /*return response()->json(
             $this->diaChiService->getList($request->search)
-        );
+        );*/
+
+        $diaChi = $this->diaChiService->getList($request->search);
+
+        return response()->json([
+            'data' => DiaChiResource::collection($diaChi),
+            'current_page' => $diaChi->currentPage(),
+            'last_page' => $diaChi->lastPage(),
+            'per_page' => $diaChi->perPage(),
+            'total' => $diaChi->total()
+        ]);
     }
 
     public function show($id)
